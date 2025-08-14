@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--bg: #0b0f17;
+	--card: #0f1623;
+	--text: #e6edf3;
+	--aurora-a: #7c3aed; /* roxo */
+	--aurora-b: #06b6d4; /* ciano */
+	--aurora-c: #22c55e; /* verde */
+}
+
+html, body, #root {
+	height: 100%;
+	background: var(--bg);
+	color: var(--text);
+}
+
+/* MUI baseline tweak for dark bg */
+.MuiDialog-paper {
+	background-color: #0f1623 !important;
+	color: var(--text) !important;
+}
+.MuiStepLabel-label, .MuiTabs-root, .MuiTypography-root {
+	color: var(--text);
+}
+
+/* Botão aurora (degradê diagonal com animação) */
+.btn-aurora {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	color: #0b0f17 !important; /* texto escuro permanente */
+	font-weight: 700;
+	border: 0;
+	background: linear-gradient(120deg, var(--aurora-a), var(--aurora-b), var(--aurora-c));
+	background-size: 200% 200%;
+	box-shadow: 0 10px 20px rgba(124,58,237,0.2), 0 6px 10px rgba(6,182,212,0.15);
+	animation: auroraShift 6s ease infinite;
+	transform: translateZ(0);
+}
+.btn-aurora:hover {
+	animation-duration: 3.5s;
+	filter: saturate(1.1);
+	box-shadow: 0 12px 25px rgba(124,58,237,0.28), 0 8px 16px rgba(6,182,212,0.2);
+	color: #0b0f17 !important;
+}
+.btn-aurora:active, .btn-aurora:focus-visible {
+	color: #0b0f17 !important;
+}
+.btn-aurora:disabled {
+	filter: grayscale(0.2);
+	opacity: 0.85;
+	color: #0b0f17 !important;
+}
+
+@keyframes auroraShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* Cartões com efeito glass + hover sutil */
+.card-glass {
+	background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+	backdrop-filter: blur(6px);
+	border: 1px solid rgba(255,255,255,0.06);
+	border-radius: 0.75rem;
+	transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+.card-glass:hover {
+	transform: translateY(-2px) scale(1.01);
+	border-color: rgba(99,102,241,0.35);
+	box-shadow: 0 8px 28px rgba(99,102,241,0.15);
+}
+
+/* Superfície para Tabs sem hover/zoom */
+.tabs-surface {
+	background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+	backdrop-filter: blur(6px);
+	border: 0; /* sem borda */
+	border-radius: 0.75rem;
+}
